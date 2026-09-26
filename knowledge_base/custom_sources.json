@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Hugging Face Daily Papers",
+    "url": "https://huggingface.co/papers"
+  },
+  {
+    "name": "TechCrunch AI",
+    "url": "https://techcrunch.com/category/artificial-intelligence/"
+  },
+  {
+    "name": "The Verge Tech",
+    "url": "https://www.theverge.com/ai-artificial-intelligence"
+  },
+  {
+    "name": "Facebook CuongMeAI",
+    "url": "https://www.facebook.com/CuongMeAI"
+  },
+  {
+    "name": "YouTube CuongMeAI Shorts",
+    "url": "https://www.youtube.com/@CuongMeAI/shorts"
+  }
+]

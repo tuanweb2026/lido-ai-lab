@@ -1,0 +1,45 @@
+{
+  "project_name": "Lido AI Lab Autonomous Multi-Agent Media Pipeline",
+  "channel_handle": "@LidoAILab",
+  "target_goal": "1000_subscribers_viral_growth",
+  "core_principles": {
+    "visual_quality": {
+      "rule_id": "VQ-01",
+      "name": "NO_ABSTRACT_NO_REPETITION",
+      "description": "Tuyệt đối không sử dụng ảnh nền trừu tượng (abstract circuit wallpaper), không lặp lại ảnh cũ giữa các cảnh và giữa các video. 100% ảnh phải là ảnh báo chí, sự kiện, người thật, sản phẩm thật, bám sát nội dung từng câu thoại.",
+      "agent_responsible": "VisualAssetScoutAgent",
+      "enforcement": "Strict photo query filtering: '{keyword} photo press release official', hash verification, dimensions >= 500x400"
+    },
+    "script_clarity": {
+      "rule_id": "SC-02",
+      "name": "CONCRETE_FACTUAL_STORYTELLING",
+      "description": "Tuyệt đối không dùng kịch bản chung chung sáo rỗng. Phải nêu rõ: 1) Tên mô hình/công nghệ cụ thể, 2) Tính năng đột phá đo đếm được (giảm 70% giá, phản xạ mili-giây...), 3) Tác động thực tế và giá trị trực tiếp cho người dùng.",
+      "agent_responsible": "TechnicalDeepDiveScriptWriterAgent",
+      "enforcement": "Mandatory entity extraction and specific headline/badge/overlay generation"
+    },
+    "rapid_news_cadence": {
+      "rule_id": "RC-03",
+      "name": "INSTANT_PUBLIC_PUBLISHING",
+      "description": "Tin tức phải nóng sốt dẻo. Quét tin mới nhất trong ngày trên toàn cầu, dựng video và đăng thẳng lên YouTube ở chế độ PUBLIC để đón đầu thuật toán đề xuất.",
+      "agent_responsible": "YouTubeDirectPublisher & AutoScheduler",
+      "enforcement": "privacyStatus: 'public' as default"
+    },
+    "audio_visual_standards": {
+      "rule_id": "AV-04",
+      "name": "AIFIRSTDEV_CYBERPUNK_TERMINAL_STANDARDS",
+      "format": "1080x1920 (9:16 Vertical)",
+      "theme": "Dark Matrix Grid (#070A0F) + Cyan Neon Glowing Cards (#00F0FF) / Red Warning Cards (#FF3246)",
+      "date_enforcement": "Real-time dynamic date: datetime.now().strftime('%d/%m/%Y') (HÔM NAY) - Zero hardcoded dates",
+      "voice": "Microsoft Edge TTS (vi-VN-NamMinhNeural, rate=+3%, pitch=-2Hz)",
+      "subtitles": "Dynamic Cyan Highlighted Subtitles with frosted glass container",
+      "font": "Arial Unicode & Arial Bold (Zero diacritic corruption)"
+    }
+  },
+  "agent_roster": {
+    "Agent_1": "SmartTrendHunterAgent - Global massive radar scanning 10+ tech feeds (TechCrunch, TheVerge, HackerNews, MIT, Google News)",
+    "Agent_2": "TechnicalDeepDiveScriptWriterAgent - Clear, concrete, metric-driven storytelling scriptwriter",
+    "Agent_3": "RealPhotoMediaProducerAgent - 1080x1920 vertical video composer with wave overlay and large subtitles",
+    "Agent_4": "YouTubeDirectPublisher - Pure Python OAuth2 resumable uploader publishing directly to @LidoAILab",
+    "Agent_5": "VisualAssetScoutAgent - Global HD press photo & real-world asset hunter preventing repetition"
+  }
+}

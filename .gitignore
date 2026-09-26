@@ -1,0 +1,42 @@
+# Credentials & Secret Tokens (BẢO MẬT)
+credentials/
+*.token
+*.json.token
+token.json
+client_secret.json
+
+# Virtual Environment & Python cache
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Video and Media Outputs (Nặng và tự động sinh)
+output/
+output_*/
+step_anim_output/
+*.mp4
+*.mp3
+*.wav
+temp_*
+
+# Temporary caches, previews & scouted assets
+real_images/
+ref_*/
+step_anim_preview/
+pro_max_*/
+tech_bg_preview/
+*.jpg
+*.jpeg
+*.png
+!assets/*.png
+!assets/*.jpg
+
+# OS artifacts
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
