@@ -252,18 +252,20 @@ class StepFlowMediaProducerAgent:
         topic_title = topic_info.get("title", script_data.get("title", "AI Technology")) if topic_info else script_data.get("title", "AI Technology")
         tech_bg = self.prepare_topic_cinematic_background(kw_list, topic_title)
 
-        # Chuẩn bị metadata cho các bước dựa trên kịch bản
-        meta = {
-            "badge_title": scenes[0].get("metric_badge", "QUY TRÌNH KỸ THUẬT AI").upper()[:28],
-            "step1": f"Bước 1: {scenes[0].get('headline', 'Nhận dữ liệu & Yêu cầu')}",
-            "step2": f"Bước 2: {scenes[1].get('headline', 'Phân tích & Lập kế hoạch')}",
-            "term_title": "terminal · agent engine",
-            "code_cmd": "agent run optimize --production",
-            "code_status": f"[RUN] {scenes[2].get('overlay_data', 'Thực thi lệnh...')[:30]}",
-            "code_result": "✓ Xử lý hoàn tất trong 0.8s",
-            "step4": f"✓ Bước 4: {scenes[3].get('headline', 'Kiểm thử & Tối ưu')}",
-            "stamp_text": "🔒 BẢO VỆ TOÀN DIỆN"
-        }
+        # Chuẩn bị metadata cho các bước dựa trên kịch bản (đồng bộ 100% theo từng thể loại)
+        meta = script_data.get("workflow_metadata", {})
+        if not meta:
+            meta = {
+                "badge_title": scenes[0].get("metric_badge", "QUY TRÌNH KỸ THUẬT AI").upper()[:28],
+                "step1": f"Bước 1: {scenes[0].get('headline', 'Nhận dữ liệu & Yêu cầu')}",
+                "step2": f"Bước 2: {scenes[1].get('headline', 'Phân tích & Lập kế hoạch')}",
+                "term_title": "terminal · agent engine",
+                "code_cmd": "agent run optimize --production",
+                "code_status": f"[RUN] {scenes[2].get('overlay_data', 'Thực thi lệnh...')[:30]}",
+                "code_result": "✓ Xử lý hoàn tất trong 0.8s",
+                "step4": f"✓ Bước 4: {scenes[3].get('headline', 'Kiểm thử & Tối ưu')}",
+                "stamp_text": "🔒 BẢO VỆ TOÀN DIỆN"
+            }
 
         # Tính toán phân đoạn phụ đề theo thời gian
         scene_dur = duration / len(scenes)
