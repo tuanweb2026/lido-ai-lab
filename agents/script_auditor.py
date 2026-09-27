@@ -71,6 +71,10 @@ class ScriptAuditorAgent:
         history = self._get_history()
         words_new = set(re.findall(r'\b\w{3,}\b', full_text))
         for old_item in history:
+            # Bỏ qua nếu chính là đề tài hiện tại đang được làm lại
+            if old_item.get("title", "").strip().lower() == topic_title.strip().lower():
+                continue
+
             old_text = old_item.get("full_voice_text", "").lower()
             words_old = set(re.findall(r'\b\w{3,}\b', old_text))
             if not words_old:
