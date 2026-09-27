@@ -26,6 +26,17 @@ async def produce_and_publish_one(topic, video_index, total_target=6):
     writer = TechnicalDeepDiveScriptWriterAgent(channel_name="@LidoAILab")
     script_data = writer.generate_script_from_topic(topic)
 
+    # CỔNG KIỂM DUYỆT CHÉO: ScriptAuditorAgent
+    from agents.script_auditor import ScriptAuditorAgent
+    auditor = ScriptAuditorAgent()
+    audit_res = auditor.audit_script(topic["title"], script_data)
+    print(f"🧐 [Auditor Gate] Kết quả kiểm duyệt: {audit_res['reason']}")
+    if not audit_res["passed"]:
+        print(f"⚠️ [Auditor Gate] Kịch bản bị từ chối: {audit_res['reason']}")
+        return None
+
+    auditor.record_passed_script(topic["title"], script_data)
+
     # Đính kèm nguồn thực tế và ngày thực tế cho từng phân cảnh
     today_str = datetime.now().strftime("%d/%m/%Y")
     src_clean = topic.get("source", "BÁO CHÍ QUỐC TẾ").upper()

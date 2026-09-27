@@ -228,20 +228,167 @@ class TechnicalDeepDiveScriptWriterAgent:
             stamp_text = "🤖 TESLA OPTIMUS"
             search_kws = ["Tesla Optimus robot standing factory Gigafactory", "Tesla humanoid robot assembly line"]
 
-        # 10. TÌNH TIẾT MẶC ĐỊNH MỞ RỘNG (DÀNH CHO CÁC TIN KHÁC)
+        # 10. TÌNH TIẾT 10: ROBOT DIGIT GẮN THÊM BÁNH XE THAY VÌ CHÂN BƯỚC (AGILITY ROBOTICS WHEELED DIGIT)
+        elif "agility" in t_low or "digit" in t_low or "wheeled" in t_low:
+            badge_title = "ROBOT DIGIT BỔ SUNG BÁNH XE"
+            h1 = "AGILITY ROBOTICS THỬ NGHIỆM DIGIT CÓ BÁNH XE"
+            t1 = f"Bước ngoặt kỹ thuật bất ngờ từ công ty chế tạo robot hàng đầu thế giới: {clean_t}!"
+            
+            h2 = "HIỆU QUẢ THỰC DỤNG VƯỢT TRÊN CHÂN BƯỚC"
+            t2 = "Thay vì chỉ tập trung vào việc đi bằng hai chân phức tạp và tốn năng lượng pin, Agility Robotics quyết định thử nghiệm gắn cụm bánh xe để di chuyển siêu tốc trong các kho hàng bằng phẳng."
+            
+            h3 = "TĂNG TỐC ĐỘ GIAO HÀNG TRONG KHO AMAZON"
+            t3 = "Sự kết hợp giữa thân trên hình người linh hoạt bốc vác kiện hàng và phần đế bánh xe cơ động giúp nâng tốc độ vận chuyển hàng hóa lên gấp ba lần."
+            
+            h4 = "XU HƯỚNG LAI HÓA ROBOT CÔNG NGHIỆP"
+            t4 = "Thực tế thương mại chứng minh: Sự bền bỉ, tiết kiệm năng lượng và hiệu quả kinh tế luôn được ưu tiên hơn vẻ ngoài hào nhoáng!"
+            
+            code_cmd = "digit-chassis --switch-mode wheeled --speed-limit-max"
+            code_status = "[CHASSIS] Chuyển đổi cơ chế di chuyển: Bánh xe trợ lực..."
+            code_res = "✓ Tốc độ kho hàng tăng 280%, tiết kiệm 45% điện năng"
+            stamp_text = "🤖 ROBOT CÓ BÁNH XE"
+            search_kws = ["Agility Robotics Digit robot warehouse Amazon", "Digit humanoid robot wheeled hybrid"]
+
+        # 11. TÌNH TIẾT 11: OMNEKY AGENTIC HARNESS CHO QUẢNG CÁO CHATGPT
+        elif "omneky" in t_low or "advertising" in t_low or "harness" in t_low:
+            badge_title = "AGENT QUẢNG CÁO TỰ HÀNH"
+            h1 = "OMNEKY TÍCH HỢP AGENT QUẢNG CÁO VÀO CHATGPT"
+            t1 = f"Bước tiến mới biến đổi hoàn toàn ngành tiếp thị kỹ thuật số: {clean_t}!"
+            
+            h2 = "TỰ ĐỘNG HÓA TỪ Ý TƯỞNG ĐẾN CHIẾN DỊCH"
+            t2 = "Hệ thống Agentic harness của Omneky cho phép ChatGPT tự động phân tích thị hiếu người dùng, sáng tạo banner, viết lời quảng cáo và phân bổ ngân sách theo thời gian thực."
+            
+            h3 = "TIẾT KIỆM HÀNG TRĂM GIỜ CÔNG MARKETING"
+            t3 = "Các doanh nghiệp có thể vận hành hàng nghìn chiến dịch quảng cáo đa nền tảng cùng lúc mà chỉ cần một người giám sát ra quyết định cuối cùng."
+            
+            h4 = "KỶ NGUYÊN MARKETING TÁC NHÂN 2026"
+            t4 = "Khả năng thấu hiểu thị trường và tối ưu hóa chuyển đổi tự động đang tái định nghĩa lại năng lực cạnh tranh của các thương hiệu toàn cầu!"
+            
+            code_cmd = "omneky-agent --deploy-campaign --target-audience ai"
+            code_status = "[MARKETING AGENT] Đang phân tích chuyển đổi và tạo mẫu quảng cáo..."
+            code_res = "✓ Đã kích hoạt 50 chiến dịch quảng cáo tự động hóa"
+            stamp_text = "📈 AGENT QUẢNG CÁO"
+            search_kws = ["AI digital marketing analytics dashboard glowing screen", "Omneky advertising ChatGPT agent"]
+
+        # 12. TÌNH TIẾT 12: CHATGPT & CLAUDE TRỌN GÓI 40 ĐÔ (ALL-IN-ONE SUBSCRIPTION)
+        elif ("40" in t_low or "both" in t_low) and "chatgpt" in t_low and "claude" in t_low:
+            badge_title = "GÓI ĐĂNG KÝ AI ĐỒNG THỜI"
+            h1 = "SỞ HỮU CẢ CHATGPT VÀ CLAUDE VỚI 40 ĐÔ"
+            t1 = f"Giải pháp tối ưu chi phí đang gây bão cộng đồng công nghệ: {clean_t}!"
+            
+            h2 = "CHẤM DỨT NỖI LO TỐN KÉM NHIỀU TÀI KHOẢN"
+            t2 = "Thay vì phải chi trả riêng biệt 20 đô cho ChatGPT Plus và 20 đô cho Claude Pro, người dùng nay có thể sử dụng song song cả hai siêu trí tuệ trên cùng một nền tảng quản lý thống nhất."
+            
+            h3 = "SO SÁNH PHẢN HỒI KÉP TRỰC TIẾP"
+            t3 = "Tính năng này giúp bạn gửi cùng lúc một câu hỏi prompt đến cả GPT và Claude để đối chiếu độ chính xác của mã nguồn và văn phong ngay lập tức."
+            
+            h4 = "LỜI KHUYÊN TỐI ƯU CHI PHÍ CÔNG NGHỆ"
+            t4 = "Hãy tận dụng các cổng tích hợp đa mô hình thông minh để nâng cao gấp đôi năng suất làm việc với mức ngân sách hợp lý nhất!"
+            
+            code_cmd = "ai-gateway --connect-dual-model --openai --anthropic"
+            code_status = "[GATEWAY] Thiết lập luồng truy vấn song song GPT-4o và Claude 3.5..."
+            code_res = "✓ Kích hoạt thành công tài khoản tích hợp đa mô hình"
+            stamp_text = "💡 TỐI ƯU CHI PHÍ AI"
+            search_kws = ["ChatGPT Claude AI side by side comparison split screen", "AI subscription payment app interface"]
+
+        # 13. TÌNH TIẾT 13: ANDO THÁCH THỨC SLACK BẰNG APP TIN NHẮN NGƯỜI & AGENT
+        elif "ando" in t_low or ("slack" in t_low and "messaging" in t_low):
+            badge_title = "APP NHẮN TIN TÁC NHÂN AI"
+            h1 = "ANDO THÁCH THỨC SLACK VỚI NỀN TẢNG HYBRID"
+            t1 = f"Cuộc cách mạng giao tiếp trong doanh nghiệp vừa mở màn: {clean_t}!"
+            
+            h2 = "NGƯỜI THẬT VÀ AGENT NGỒI CHUNG PHÒNG CHAT"
+            t2 = "Khác với Slack chỉ coi bot như công cụ hỗ trợ đơn giản, Ando coi AI Agent như một thành viên nhóm thực thụ, có thể tham gia tranh luận, giao task và thực thi mã code tự động."
+            
+            h3 = "RÚT NGẮN 80% THỜI GIAN HỌP HÀNH NỘI BỘ"
+            t3 = "Các Agent chủ động tổng hợp tài liệu, kiểm tra tiến độ dự án trên GitHub và cảnh báo lỗi phát sinh ngay trong kênh chat chung trước khi con người kịp nhận ra."
+            
+            h4 = "MÔ HÌNH LÀM VIỆC TƯƠNG LAI 2026"
+            t4 = "Doanh nghiệp nào sớm đưa các tác nhân AI vào quy trình giao tiếp hàng ngày sẽ tạo ra bước nhảy vọt khổng lồ về tốc độ vận hành!"
+            
+            code_cmd = "ando-workspace --invite-agent --assign-role-engineer"
+            code_status = "[WORKSPACE] Thêm tác nhân AI vào kênh trao đổi dự án..."
+            code_res = "✓ Tác nhân tự động kết nối và đồng bộ 100% backlog"
+            stamp_text = "💬 GIAO TIẾP TÁC NHÂN"
+            search_kws = ["Modern team messaging interface Slack competitor dark", "AI bot collaborating team chat screen"]
+
+        # 14. TÌNH TIẾT 14: AMD RYZEN AI MAX & PERPLEXITY BIẾN PC THÀNH AGENTIC PC
+        elif "amd" in t_low and ("perplexity" in t_low or "ryzen" in t_low):
+            badge_title = "CHIP AMD & AGENTIC PC"
+            h1 = "AMD VÀ PERPLEXITY BIẾN MÁY TÍNH THÀNH AGENTIC PC"
+            t1 = f"Liên minh phần cứng và phần mềm đột phá vừa được công bố: {clean_t}!"
+            
+            h2 = "NPU MẠNH MẼ ĐƯA PERPLEXITY XỬ LÝ NỘI BỘ"
+            t2 = "Dòng chip AMD Ryzen AI Max Series mang lại sức mạnh tính toán NPU vượt trội, cho phép Perplexity chạy các tác vụ nghiên cứu sâu ngay trên thiết bị mà không cần gửi dữ liệu lên đám mây."
+            
+            h3 = "BẢO MẬT TUYỆT ĐỐI VÀ TỐC ĐỘ PHẢN HỒI TỨC THÌ"
+            t3 = "Người dùng văn phòng và lập trình viên nay có thể an tâm xử lý các tài liệu mật nội bộ với tốc độ suy luận mượt mà và không lo bị đứt đoạn kết nối mạng."
+            
+            h4 = "BƯỚC TIẾN CỦA MÁY TÍNH CÁ NHÂN AI"
+            t4 = "Khái niệm PC truyền thống đang chính thức nhường chỗ cho Agentic PC - nơi máy tính tự biết lắng nghe, suy luận và hành động thay bạn!"
+            
+            code_cmd = "ryzen-ai --npu-benchmark --run-local-perplexity"
+            code_status = "[NPU] Đo lường hiệu năng suy luận cục bộ trên chip AMD Ryzen..."
+            code_res = "✓ Băng thông NPU đạt 60 TOPS, bảo mật dữ liệu cục bộ 100%"
+            stamp_text = "⚡ CHIP AMD AGENTIC"
+            search_kws = ["AMD Ryzen processor chip glowing motherboard", "Perplexity AI agent running on laptop screen"]
+
+        # 15. TÌNH TIẾT 15: PHẦN MỀM MÃ NGUỒN MỞ SỬA LỖI GIẬT CỤC ROBOT (HERKY-JERKY ROBOTS)
+        elif "herky-jerky" in t_low or ("open source" in t_low and "copying humans" in t_low):
+            badge_title = "PHẦN MỀM MỊN HÓA CỬ ĐỘNG ROBOT"
+            h1 = "PHẦN MỀM NGUỒN MỞ XÓA BỎ LỖI GIẬT CỤC CỦA ROBOT"
+            t1 = f"Đột phá ngoạn mục trong công nghệ điều khiển chuyển động: {clean_t}!"
+            
+            h2 = "HỌC HỎI TỪ CƠ CHẾ UYỂN CHUYỂN CỦA CON NGƯỜI"
+            t2 = "Thay vì dùng các thuật toán quỹ đạo cứng nhắc khiến robot bước đi giật cục và vụng về, phần mềm mã nguồn mở mới này mô phỏng cơ chế đàn hồi cơ bắp và khớp xương tự nhiên của con người."
+            
+            h3 = "TĂNG TÍNH THỰC DỤNG VÀ THÂN THIỆN XÃ HỘI"
+            t3 = "Các chuyển động uyển chuyển không chỉ giúp robot giữ thăng bằng tốt hơn trên địa hình dốc mà còn tạo cảm giác gần gũi, bớt đáng sợ đối với những người xung quanh."
+            
+            h4 = "SỨC MẠNH CỦA MÃ NGUỒN MỞ"
+            t4 = "Nhờ chia sẻ công khai, hàng nghìn phòng nghiên cứu trên toàn thế giới nay có thể nâng cấp robot của mình chỉ bằng vài dòng mã cập nhật!"
+            
+            code_cmd = "motion-smoothing --apply-kinematics --human-gait"
+            code_status = "[KINEMATICS] Áp dụng thuật toán làm mịn bước đi sinh học..."
+            code_res = "✓ Triệt tiêu 95% hiện tượng giật rung ở khớp gối robot"
+            stamp_text = "🦾 CHUYỂN ĐỘNG ROBOT"
+            search_kws = ["Humanoid robot walking smoothly natural movement", "Robotics kinematic motion software graph"]
+
+        # 16. TÌNH TIẾT 16: HƯỚNG DẪN TÙY BIẾN CÔNG CỤ AI (CUSTOMIZE AI TOOLS CHATGPT/GEMINI/CLAUDE)
+        elif "customize" in t_low and any(k in t_low for k in ["chatgpt", "gemini", "claude"]):
+            badge_title = "KỸ THUẬT TÙY BIẾN CÔNG CỤ AI"
+            h1 = "HƯỚNG DẪN TÙY BIẾN CHATGPT, GEMINI VÀ CLAUDE"
+            t1 = f"Bí quyết cá nhân hóa nâng cao hiệu suất công việc: {clean_t}!"
+            
+            h2 = "CÀI ĐẶT BỘ NÃO RIÊNG CHO TỪNG TÁC VỤ"
+            t2 = "Đừng chỉ dùng AI ở chế độ mặc định chung chung! Việc cấu hình System Prompt và Custom Instructions chuẩn xác sẽ biến trợ lý AI thành chuyên gia tư vấn riêng cho ngành nghề của bạn."
+            
+            h3 = "ĐỒNG BỘ NGUỒN DỮ LIỆU VÀ PHONG CÁCH DIỄN ĐẠT"
+            t3 = "Bạn có thể chỉ định rõ độ dài câu trả lời, phong cách phản hồi súc tích, định dạng xuất code hoặc kết nối trực tiếp với tài liệu dự án để loại bỏ hoàn toàn các lỗi ảo giác."
+            
+            h4 = "BIẾN AI THÀNH TRỢ THỦ ĐẮC LỰC"
+            t4 = "Dành ra 10 phút tinh chỉnh cấu hình ngay hôm nay để tiết kiệm hàng chục giờ chỉnh sửa thủ công trong tương lai!"
+            
+            code_cmd = "ai-config --set-custom-instructions --persona expert-dev"
+            code_status = "[CONFIG] Cập nhật Custom Instructions chuyên sâu cho tài khoản..."
+            code_res = "✓ Đã áp dụng hồ sơ chuyên gia công nghệ thành công"
+            stamp_text = "⚙️ TÙY BIẾN AI"
+            search_kws = ["Custom Instructions ChatGPT Gemini Claude settings screen", "AI system prompt configuration modern developer"]
+
+        # 17. TÌNH TIẾT MẶC ĐỊNH MỞ RỘNG (DÀNH CHO CÁC TIN KHÁC)
         else:
-            badge_title = "ĐỘT PHÁ CÔNG NGHỆ MỚI"
-            h1 = f"TÂM ĐIỂM: {entity.upper()}"
-            t1 = f"Bản tin công nghệ đặc biệt: {clean_t}! Một bước tiến mới đang thu hút sự chú ý lớn từ các chuyên gia toàn cầu."
+            badge_title = f"TÂM ĐIỂM: {entity.upper()}"
+            h1 = f"ĐỘT PHÁ MỚI: {entity.upper()}"
+            t1 = f"Thông tin công nghệ đáng chú ý nhất vừa công bố: {clean_t}!"
             
-            h2 = "TẬP TRUNG GIẢI QUYẾT BÀI TOÁN THỰC TIỄN"
-            t2 = "Khác với các nghiên cứu lý thuyết trong phòng lab, giải pháp này tập trung giải quyết trực tiếp nhu cầu thực tế của người dùng và các bài toán kinh doanh cụ thể."
+            h2 = "TẬP TRUNG NÂNG CAO NĂNG SUẤT THỰC TẾ"
+            t2 = f"Giải pháp mới từ {entity} giải quyết trực tiếp những hạn chế tồn đọng lâu nay của các hệ thống tự động, mang lại tốc độ xử lý nhanh hơn và độ ổn định cao hơn."
             
-            h3 = "LỢI THẾ CẠNH TRANH VƯỢT TRỘI"
-            t3 = "Việc sớm tích hợp công nghệ này sẽ giúp các cá nhân và doanh nghiệp gia tăng năng suất vượt trội, rút ngắn thời gian xử lý công việc từ vài ngày xuống còn vài phút."
+            h3 = "TÍCH HỢP LIỀN MẠCH VÀO DỰ ÁN THỰC CHIẾN"
+            t3 = "Các kỹ sư và chuyên gia có thể nhanh chóng ứng dụng tính năng này vào quy trình làm việc hiện tại mà không phải đập bỏ hạ tầng công nghệ cũ."
             
-            h4 = "ĐÓN ĐẦU LÀN SÓNG 2026"
-            t4 = "Công nghệ đang thay đổi diện mạo từng ngành nghề. Hãy theo dõi sát sao để không bị tụt lại phía sau trong cuộc cách mạng này!"
+            h4 = "THEO DÕI SÁT SAO ĐỂ DẪN ĐẦU"
+            t4 = f"Hãy chủ động trải nghiệm và ứng dụng {entity} để khai thác triệt để sức mạnh của làn sóng công nghệ mới!"
             
             code_cmd = f"app-deploy --product {entity.lower()} --live"
             code_status = "[DEPLOY] Triển khai tính năng mới lên hệ thống..."

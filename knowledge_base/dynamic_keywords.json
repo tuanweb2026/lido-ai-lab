@@ -37,5 +37,7 @@
   "claude.ai": 3,
   "mistral": 3,
   "claude-generated": 3,
-  "wanted": 3
+  "wanted": 3,
+  "gpt-6-astra": 3,
+  "gpts": 3
 }
