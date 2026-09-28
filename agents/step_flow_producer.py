@@ -283,7 +283,7 @@ class StepFlowMediaProducerAgent:
             "-shortest", final_mp4
         ]
 
-        pipe = subprocess.Popen(ffmpeg_cmd, stdin=subprocess.PIPE, stderr=subprocess.PIPE)
+        pipe = subprocess.Popen(ffmpeg_cmd, stdin=subprocess.PIPE, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
         for f_idx in range(total_frames):
             t = f_idx / FPS

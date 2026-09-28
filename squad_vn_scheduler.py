@@ -3,6 +3,7 @@ import os
 import sys
 import json
 import time
+import re
 from datetime import datetime
 from agents.trend_hunter import SmartTrendHunterAgent
 from agents.step_flow_producer import StepFlowMediaProducerAgent
@@ -20,14 +21,12 @@ DB_PATH = "/Users/abc/.gemini/antigravity/scratch/lido_ai_lab/seen_news_vn.json"
 class SquadVNScheduler:
     def __init__(self):
         self.hunter = SmartTrendHunterAgent(db_path=DB_PATH)
-        # Nguồn tin chuyên biệt cho Việt Nam
         self.hunter.sources = [
             {"name": "Google News (Việt Nam AI)", "url": "https://news.google.com/rss/search?q=Tr%C3%AD%20tu%E1%BB%87%20nh%C3%A2n%20t%E1%BA%A1o%20OR%20ChatGPT%20when%3A48h&hl=vi&gl=VN&ceid=VN:vi"},
             {"name": "Google News (Công Nghệ VN)", "url": "https://news.google.com/rss/search?q=AI%20chuy%E1%BB%83n%20%C4%91%E1%BB%95i%20s%E1%BB%91%20when%3A48h&hl=vi&gl=VN&ceid=VN:vi"}
         ]
-        # Bộ từ khóa ưu tiên thực tiễn Việt Nam
         self.hunter.hot_keywords = {
-            "trí tuệ nhân tạo": 5, "chatgpt": 5, "chuyển đổi số": 4, "giáo dục": 4,
+            "trí tuệ nhân tạo": 5, "chatgpt": 5, "chuyển đổi số": 4, "giáo dục": 4, "đại học": 4,
             "doanh nghiệp": 4, "công cụ ai": 4, "tự động hóa": 4, "ứng dụng": 3,
             "việt nam": 3, "robot": 3, "gemini": 4, "deepseek": 4
         }
@@ -35,24 +34,64 @@ class SquadVNScheduler:
 
     def generate_vietnamese_script(self, topic):
         clean_t = topic["title"].split(" - ")[0].strip()
-        badge_title = "CÔNG NGHỆ AI VIỆT NAM"
-        h1 = f"TÂM ĐIỂM: {clean_t[:45].upper()}"
-        t1 = f"Thông tin công nghệ đáng chú ý nhất vừa được ghi nhận: {clean_t}!"
-        
-        h2 = "ỨNG DỤNG THỰC TIỄN NỔI BẬT"
-        t2 = "Công nghệ này đang nhanh chóng được ứng dụng vào đời sống và doanh nghiệp, giúp rút ngắn thời gian xử lý công việc và tối ưu hóa hiệu suất vượt bậc."
-        
-        h3 = "CƠ HỘI BỨT PHÁ TRONG NƯỚC"
-        t3 = "Các chuyên gia nhận định việc sớm làm chủ các giải pháp tự động hóa thông minh sẽ mở ra lợi thế cạnh tranh rất lớn cho các cá nhân và tổ chức."
-        
-        h4 = "LỜI KHUYÊN CHO NGƯỜI DÙNG"
-        t4 = "Hãy chủ động tìm hiểu và tích hợp các công cụ AI vào quy trình làm việc ngay hôm nay để đón đầu làn sóng chuyển đổi số!"
+        t_low = clean_t.lower()
+
+        # 1. Chủ đề Giáo dục & Đại học
+        if any(k in t_low for k in ["giáo dục", "trường học", "đại học", "học sinh", "sinh viên"]):
+            badge_title = "AI TRONG GIÁO DỤC VN"
+            h1 = "ĐỔI MỚI GIÁO DỤC THỜI ĐẠI AI"
+            t1 = f"Thông điệp chuyển đổi số mạnh mẽ trong ngành giáo dục vừa được nhấn mạnh: {clean_t}!"
+            h2 = "DẠY TƯ DUY THAY VÌ HỌC VẸT"
+            t2 = "Trước sự phổ biến của ChatGPT và các trợ lý ảo, giảng viên và sinh viên bắt buộc phải chuyển từ phương pháp ghi nhớ thụ động sang rèn luyện tư duy phản biện và khả năng kiểm chứng dữ liệu."
+            h3 = "ỨNG DỤNG TRỢ LÝ HỌC TẬP THÔNG MINH"
+            t3 = "Nhiều trường đại học hàng đầu đã bắt đầu thí điểm đưa AI vào phòng thí nghiệm, hỗ trợ nghiên cứu khoa học và cá nhân hóa tài liệu học tập cho từng sinh viên."
+            h4 = "CHUẨN BỊ CHO THỊ TRƯỜNG LAO ĐỘNG"
+            t4 = "Thế hệ sinh viên làm chủ công nghệ trí tuệ nhân tạo ngay từ giảng đường sẽ nắm giữ lợi thế cạnh tranh áp đảo trong kỷ nguyên số!"
+            cmd = "edu-portal --modernize-curriculum --ai-assisted"
+            status = "[EDU TECH] Đồng bộ giáo trình giảng dạy thích ứng AI..."
+            res = "✓ Đã tích hợp module trợ lý AI vào 100% môn học chuyên ngành"
+            stamp = "🎓 GIÁO DỤC AI"
+            kws = ["Vietnam university students modern campus laptop", "Vietnamese students technology classroom"]
+
+        # 2. Chủ đề Doanh nghiệp & Kinh tế số
+        elif any(k in t_low for k in ["kinh tế số", "doanh nghiệp", "nhà máy", "tiết kiệm", "chiến lược"]):
+            badge_title = "AI DOANH NGHIỆP VIỆT"
+            h1 = "DOANH NGHIỆP BỨT PHÁ BẰNG AI"
+            t1 = f"Bước chuyển dịch công nghệ mang tính chiến lược đang diễn ra sôi động: {clean_t}!"
+            h2 = "TỰ ĐỘNG HÓA TỐI ƯU CHI PHÍ"
+            t2 = "Việc triển khai các giải pháp AI tự hành giúp các doanh nghiệp tinh gọn bộ máy vận hành, cắt giảm hàng tỷ đồng chi phí lãng phí và gia tăng năng suất chuỗi cung ứng."
+            h3 = "NÂNG TẦM TRẢI NGHIỆM KHÁCH HÀNG"
+            t3 = "Từ các chatbot chăm sóc khách hàng 24/7 đến hệ thống phân tích xu hướng thị trường, AI đang trở thành đòn bẩy sống còn của các thương hiệu Việt."
+            h4 = "CƠ HỘI ĐỘT PHÁ NĂM 2026"
+            t4 = "Doanh nghiệp nào sớm chuyển đổi số toàn diện sẽ nhanh chóng chiếm lĩnh thị phần và vươn tầm ra thị trường quốc tế!"
+            cmd = "vn-enterprise --automate-operations --ai-core"
+            status = "[ENTERPRISE] Tích hợp AI vào chuỗi vận hành doanh nghiệp..."
+            res = "✓ Năng suất tăng 35%, tiết kiệm 40% chi phí vận hành"
+            stamp = "💼 DOANH NGHIỆP AI"
+            kws = ["Modern Vietnam office building digital technology", "Vietnam business conference digital transformation"]
+
+        # 3. Mặc định Đổi mới Công nghệ
+        else:
+            badge_title = "CÔNG NGHỆ AI VIỆT NAM"
+            h1 = f"TÂM ĐIỂM: {clean_t[:45].upper()}"
+            t1 = f"Tin tức công nghệ đáng chú ý nhất trong nước vừa được công bố: {clean_t}!"
+            h2 = "TIÊN PHONG THỬ NGHIỆM TÍNH NĂNG MỚI"
+            t2 = "Công nghệ này mở ra khả năng tương tác thông minh, giúp người dùng phổ thông tiếp cận với những đột phá mới nhất của cuộc cách mạng AI."
+            h3 = "ĐÒN BẨY CHO XÃ HỘI SỐ"
+            t3 = "Sự lan tỏa nhanh chóng của các công cụ thông minh đang thúc đẩy mạnh mẽ quá trình phổ cập kỹ năng số trong cộng đồng."
+            h4 = "ĐÓN ĐẦU XU HƯỚNG CÔNG NGHỆ"
+            t4 = "Hãy chủ động trải nghiệm và ứng dụng công nghệ này vào công việc hàng ngày để nâng cao hiệu suất làm việc của bạn!"
+            cmd = "vn-ai --deploy-solution --smart-service"
+            status = "[VN-TECH] Kích hoạt cổng dịch vụ công nghệ thông minh..."
+            res = "✓ Khởi chạy hệ thống thành công phục vụ người dùng Việt"
+            stamp = "🇻🇳 AI VIỆT NAM"
+            kws = [f"{clean_t[:25]} Vietnam technology", "Vietnam modern smart city technology"]
 
         scenes = [
-            {"scene_id": 1, "headline": h1, "metric_badge": badge_title, "text": t1, "overlay_data": h1, "search_keywords": [f"{clean_t[:30]} Vietnam technology", "Vietnam modern digital tech"]},
-            {"scene_id": 2, "headline": h2, "metric_badge": badge_title, "text": t2, "overlay_data": h2, "search_keywords": ["AI business application modern office", "Digital transformation dashboard"]},
-            {"scene_id": 3, "headline": h3, "metric_badge": badge_title, "text": t3, "overlay_data": h3, "search_keywords": ["Vietnam software engineer working laptop", "AI technology innovation presentation"]},
-            {"scene_id": 4, "headline": h4, "metric_badge": badge_title, "text": t4, "overlay_data": h4, "search_keywords": ["Vietnamese youth innovative technology", "Modern creator studio neon setup"]},
+            {"scene_id": 1, "headline": h1, "metric_badge": badge_title, "text": t1, "overlay_data": h1, "search_keywords": kws},
+            {"scene_id": 2, "headline": h2, "metric_badge": badge_title, "text": t2, "overlay_data": h2, "search_keywords": kws},
+            {"scene_id": 3, "headline": h3, "metric_badge": badge_title, "text": t3, "overlay_data": h3, "search_keywords": kws},
+            {"scene_id": 4, "headline": h4, "metric_badge": badge_title, "text": t4, "overlay_data": h4, "search_keywords": kws},
             {
                 "scene_id": 5,
                 "headline": "KÊNH CÔNG NGHỆ LIDO AI LAB",
@@ -68,11 +107,11 @@ class SquadVNScheduler:
             "step1": h1,
             "step2": h2,
             "term_title": "terminal · lido vn-ai runtime",
-            "code_cmd": "vn-ai --deploy-solution --vietnam-region",
-            "code_status": "[VN-AI] Đang kích hoạt giải pháp tự động hóa...",
-            "code_result": "✓ Triển khai giải pháp thành công cho người dùng Việt",
+            "code_cmd": cmd,
+            "code_status": status,
+            "code_result": res,
             "step4": h4,
-            "stamp_text": "🇻🇳 AI VIỆT NAM"
+            "stamp_text": stamp
         }
 
         return {
@@ -92,18 +131,27 @@ class SquadVNScheduler:
             print("💤 [SQUAD VN] Không có tin tức mới tại Việt Nam trong chu kỳ này.")
             return
 
-        topic = candidates[0]
-        print(f"🎯 [SQUAD VN] Đã chọn tin VN hot nhất: '{topic['title']}' (Điểm: {topic['score']})")
+        selected_topic = None
+        selected_script = None
 
-        script_data = self.generate_vietnamese_script(topic)
-        
-        # Kiểm duyệt chéo
-        audit_res = self.auditor.audit_script(topic["title"], script_data)
-        print(f"🧐 [SQUAD VN Auditor] {audit_res['reason']}")
-        if not audit_res["passed"]:
-            print(f"⚠️ [SQUAD VN] Kịch bản bị từ chối: {audit_res['reason']}")
+        for topic in candidates:
+            script_data = self.generate_vietnamese_script(topic)
+            audit_res = self.auditor.audit_script(topic["title"], script_data)
+            if audit_res["passed"]:
+                print(f"🎯 [SQUAD VN] Đã chọn tin VN hot nhất: '{topic['title']}' (Điểm: {topic['score']})")
+                print(f"🧐 [SQUAD VN Auditor] {audit_res['reason']}")
+                selected_topic = topic
+                selected_script = script_data
+                break
+            else:
+                print(f"⚠️ [SQUAD VN Auditor] Bỏ qua '{topic['title'][:40]}...': {audit_res['reason']}")
+
+        if not selected_topic or not selected_script:
+            print("💤 [SQUAD VN] Toàn bộ tin quét được chưa đạt chuẩn kiểm duyệt chéo.")
             return
 
+        topic = selected_topic
+        script_data = selected_script
         self.auditor.record_passed_script(topic["title"], script_data)
 
         today_str = datetime.now().strftime("%d/%m/%Y")
