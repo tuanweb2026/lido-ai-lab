@@ -68,21 +68,37 @@ class ScriptAuditorAgent:
                 }
 
         # 2. Kiểm tra độ trùng lặp với lịch sử (Cross-check seen scripts)
+        # Loại bỏ các câu CTA/outro mặc định trước khi tính Jaccard
+        def clean_boilerplate(text):
+            t = text.lower()
+            t = re.sub(r'subscribe to lido ai lab.*', '', t)
+            t = re.sub(r'đăng ký kênh lido ai lab.*', '', t)
+            t = re.sub(r'bấm like và đăng ký.*', '', t)
+            t = re.sub(r'hãy theo dõi.*lido ai lab.*', '', t)
+            return t
+
+        cleaned_full_text = clean_boilerplate(full_text)
+        stopwords = {
+            "the", "and", "for", "with", "that", "this", "from", "are", "was", "were", "been",
+            "has", "have", "had", "will", "would", "can", "could", "all", "any", "not", "into",
+            "của", "cho", "với", "những", "được", "trong", "trên", "này", "một", "các", "khi"
+        }
+        words_new = {w for w in re.findall(r'\b\w{3,}\b', cleaned_full_text) if w not in stopwords}
+
         history = self._get_history()
-        words_new = set(re.findall(r'\b\w{3,}\b', full_text))
         for old_item in history:
             # Bỏ qua nếu chính là đề tài hiện tại đang được làm lại
             if old_item.get("title", "").strip().lower() == topic_title.strip().lower():
                 continue
 
-            old_text = old_item.get("full_voice_text", "").lower()
-            words_old = set(re.findall(r'\b\w{3,}\b', old_text))
+            old_text = clean_boilerplate(old_item.get("full_voice_text", "").lower())
+            words_old = {w for w in re.findall(r'\b\w{3,}\b', old_text) if w not in stopwords}
             if not words_old:
                 continue
             intersection = len(words_new & words_old)
             union = len(words_new | words_old)
             jaccard = intersection / union if union > 0 else 0
-            if jaccard > 0.40:
+            if jaccard > 0.55:
                 return {
                     "passed": False,
                     "reason": f"Trùng lặp lời thoại quá cao ({jaccard:.1%}) với video cũ: '{old_item.get('title')}'",

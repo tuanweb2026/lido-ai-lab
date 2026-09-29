@@ -70,7 +70,7 @@ class ChannelSecurityGuard:
             
             # Nếu đang ở kênh Lido AI Lab mà có từ khóa thiền/Phật
             if self.key == "lido_ai_lab":
-                banned_keywords = ["phật", "thiền", "kinh", "chú đại bi", "vô thường", "buddha", "nikaya"]
+                banned_keywords = ["phật", "thiền", "kinh phật", "kinh nikaya", "tụng kinh", "chú đại bi", "vô thường", "buddha", "nikaya"]
                 for kw in banned_keywords:
                     if kw in title:
                         raise ValueError(f"🚨 [BÁO ĐỘNG ĐỎ] Tiêu đề '{video_metadata['title']}' chứa từ khóa PHẬT GIÁO ({kw}), tuyệt đối KHÔNG ĐƯỢC đăng lên kênh {self.profile['name']}!")
